@@ -1404,7 +1404,7 @@ img {
 .btn--whatsapp {
   background: linear-gradient(180deg, #2fd172, #1da85a);
   color: #062d19;
-  border-color: var(--espresso);
+  border-color: transparent;
   box-shadow: 0 8px 18px rgba(29, 168, 90, 0.32);
 }
 
@@ -1421,7 +1421,7 @@ img {
   width: 64px;
   height: 64px;
   border-radius: 0;
-  border: 3px solid var(--wood-900);
+  border: none;
   background: linear-gradient(160deg, #2fd172, #128c7e);
   color: #ffffff;
   display: grid;
@@ -1648,7 +1648,7 @@ img {
   padding: 0.5rem 0.85rem;
   border-radius: 0;
   background: linear-gradient(160deg, #2fd172, #1da85a);
-  border: 2px solid var(--wood-900);
+  border: 2px solid transparent;
   color: #062d19;
   font-weight: 600;
   font-size: 0.82rem;
