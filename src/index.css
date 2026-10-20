@@ -263,13 +263,14 @@ img {
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 2.25rem;
 }
 
 .navbar__links {
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.3rem;
   list-style: none;
   margin: 0;
@@ -1837,8 +1838,10 @@ img {
   }
 
   .navbar__links {
+    flex: none;
     flex-direction: column;
     align-items: stretch;
+    justify-content: flex-start;
     gap: 0.4rem;
   }
 

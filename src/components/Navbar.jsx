@@ -47,6 +47,27 @@ export default function Navbar() {
           </span>
         </Link>
 
+        <nav className={`navbar__menu ${open ? 'is-open' : ''}`} aria-label="Principal">
+          <ul className="navbar__links">
+            {links.map(({ to, label, icon: Icon, end }) => (
+              <li key={to}>
+                <NavLink
+                  to={to}
+                  end={end}
+                  onClick={closeMenu}
+                  className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+                >
+                  <Icon size={17} strokeWidth={1.9} aria-hidden="true" />
+                  {label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+          <Link to="/productos" className="btn btn--primary btn--small navbar__cta" onClick={closeMenu}>
+            Ir a la tienda
+          </Link>
+        </nav>
+
         <div className="navbar__tools">
           <button
             type="button"
@@ -68,27 +89,6 @@ export default function Navbar() {
             {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-
-        <nav className={`navbar__menu ${open ? 'is-open' : ''}`} aria-label="Principal">
-          <ul className="navbar__links">
-            {links.map(({ to, label, icon: Icon, end }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  end={end}
-                  onClick={closeMenu}
-                  className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
-                >
-                  <Icon size={17} strokeWidth={1.9} aria-hidden="true" />
-                  {label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-          <Link to="/productos" className="btn btn--primary btn--small navbar__cta" onClick={closeMenu}>
-            Ir a la tienda
-          </Link>
-        </nav>
       </div>
     </header>
   )
