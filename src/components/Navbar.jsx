@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Trees, House, Package, LayoutGrid, Menu, X } from 'lucide-react'
+import { Trees, House, Package, LayoutGrid, Menu, X, Sun, Moon } from 'lucide-react'
 
 const links = [
   { to: '/', label: 'Inicio', icon: House, end: true },
@@ -8,9 +8,30 @@ const links = [
   { to: '/categorias', label: 'Categorías', icon: LayoutGrid, end: false },
 ]
 
+const getInitialTheme = () => {
+  try {
+    const stored = window.localStorage.getItem('rustic-theme')
+    if (stored === 'dark' || stored === 'light') return stored
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  } catch {
+    return 'light'
+  }
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [theme, setTheme] = useState(getInitialTheme)
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try {
+      window.localStorage.setItem('rustic-theme', theme)
+    } catch {
+      /* almacenamiento no disponible */
+    }
+  }, [theme])
+
+  const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
   const closeMenu = () => setOpen(false)
 
   return (
@@ -26,15 +47,27 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <button
-          type="button"
-          className="navbar__toggle"
-          aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
-          aria-expanded={open}
-          onClick={() => setOpen((prev) => !prev)}
-        >
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="navbar__tools">
+          <button
+            type="button"
+            className="navbar__theme"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro'}
+            title={theme === 'dark' ? 'Tema claro' : 'Tema oscuro'}
+          >
+            {theme === 'dark' ? <Sun size={17} aria-hidden="true" /> : <Moon size={17} aria-hidden="true" />}
+          </button>
+
+          <button
+            type="button"
+            className="navbar__toggle"
+            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={open}
+            onClick={() => setOpen((prev) => !prev)}
+          >
+            {open ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
 
         <nav className={`navbar__menu ${open ? 'is-open' : ''}`} aria-label="Principal">
           <ul className="navbar__links">
