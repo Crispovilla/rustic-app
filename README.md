@@ -12,7 +12,8 @@ Tienda de muebles rústicos artesanales hechos con maderas nobles. Aplicación w
 - **Chatbot flotante de WhatsApp** con respuestas guiadas, indicador de "escribiendo" y enlace
   directo a `wa.me` con el mensaje precargado según la conversación
 - **Modo claro/oscuro** con botón en el navbar (se guarda en `localStorage` y respeta el
-  sistema), aplicado antes de pintar para evitar destellos
+  sistema): el claro usa la paleta rústica y el oscuro es un dark neutro estándar (grises
+  carbón), aplicado antes de pintar para evitar destellos
 - **Iconos Lucide** (`lucide-react`) en navbar, cards, footer y toda la interfaz
 - **Transiciones animate.css** en cards (fadeInUp escalonado) y micro-interacciones (tada, swing)
 - **Estilo rústico-industrial**: paleta crema/madera/cafetal, esquinas rectas, navbar centrado
