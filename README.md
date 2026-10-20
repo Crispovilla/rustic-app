@@ -5,14 +5,22 @@ Tienda de muebles rústicos artesanales hechos con maderas nobles. Aplicación w
 
 ## Características
 
+- **Hero a pantalla completa** con fotografía rústica de fondo en la página de inicio
 - **React Router DOM** con tres páginas: `Inicio`, `Productos` y `Categorías`
 - **Catálogo de 14 productos** (mesas, sillas, armarios, estanterías, camas y decoración) con
   filtrado por categoría y búsqueda por texto
+- **Chatbot flotante de WhatsApp** con respuestas guiadas, indicador de "escribiendo" y enlace
+  directo a `wa.me` con el mensaje precargado según la conversación
 - **Iconos Lucide** (`lucide-react`) en navbar, cards, footer y toda la interfaz
 - **Transiciones animate.css** en cards (fadeInUp escalonado) y micro-interacciones (tada, swing)
 - **Estilo rústico**: paleta de maderas y crema, texturas de vetas en CSS, tipografías
   _Cinzel_ (títulos) y _Lora_ (cuerpo)
 - Diseño **responsive** con menú móvil animado
+
+## Imágenes
+
+Fotografías de [Burst](https://burst.shopify.com) (Shopify) — libres de uso, no requieren
+atribución (`public/hero-rustic.jpg`, `public/story-rustic.jpg`, `public/wood-band.jpg`).
 
 ## Tecnologías
 

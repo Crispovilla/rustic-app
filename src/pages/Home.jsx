@@ -11,6 +11,7 @@ import {
   ChevronRight,
   Quote,
   Phone,
+  Award,
 } from 'lucide-react'
 import ProductCard from '../components/ProductCard.jsx'
 import SectionTitle from '../components/SectionTitle.jsx'
@@ -20,11 +21,11 @@ import { products, categories } from '../data/products.js'
 
 const featured = products.filter((product) => product.featured)
 
-const features = [
+const craftPoints = [
   {
     icon: Hammer,
-    title: 'Hecho a mano',
-    text: 'Cada pieza se arma con ensambles tradicionales, sin chapas ni atajos.',
+    title: 'Ensambles tradicionales',
+    text: 'Cola de golondrina, espigas y tarugos: nada de clavos ni chapas.',
   },
   {
     icon: Leaf,
@@ -47,13 +48,15 @@ const stats = [
   { icon: Users, value: '+40', label: 'años de oficio' },
   { icon: Gem, value: '8', label: 'maderas nobles' },
   { icon: TreePine, value: '+2.500', label: 'piezas entregadas' },
+  { icon: Award, value: '10 años', label: 'de garantía' },
 ]
 
 export default function Home() {
   return (
     <div className="page">
+      {/* ---------------------------------- HERO --------------------------------- */}
       <section className="hero">
-        <div className="hero__inner">
+        <div className="hero__content">
           <p className="hero__badge animate__animated animate__fadeInDown">
             <TreePine size={16} aria-hidden="true" />
             Artesanales desde 1987
@@ -83,32 +86,73 @@ export default function Home() {
           <ul className="hero__stats animate__animated animate__fadeInUp">
             {stats.map(({ icon: Icon, value, label }) => (
               <li key={label} className="hero__stat">
-                <Icon size={20} aria-hidden="true" />
+                <Icon size={19} aria-hidden="true" />
                 <strong>{value}</strong>
                 <span>{label}</span>
               </li>
             ))}
           </ul>
         </div>
-      </section>
 
-      <section className="features">
-        <div className="features__inner">
-          {features.map(({ icon: Icon, title, text }) => (
-            <div key={title} className="feature">
-              <span className="feature__icon">
-                <Icon size={22} aria-hidden="true" />
-              </span>
-              <div>
-                <h3 className="feature__title">{title}</h3>
-                <p className="feature__text">{text}</p>
-              </div>
-            </div>
-          ))}
+        <div className="hero__cue" aria-hidden="true">
+          <span className="hero__cue-line" />
+          Descubre
         </div>
       </section>
 
-      <section className="section">
+      {/* ------------------------------- EL TALLER ------------------------------- */}
+      <section className="section story">
+        <div className="story__inner">
+          <div className="story__media animate__animated animate__fadeInLeft">
+            <img
+              src="/story-rustic.jpg"
+              alt="Mueble rústico de madera maciza junto a una pared de ladrillo blanco"
+              loading="lazy"
+            />
+            <span className="story__stamp">
+              <Award size={16} aria-hidden="true" />
+              Taller familiar · desde 1987
+            </span>
+          </div>
+
+          <div className="story__body animate__animated animate__fadeInRight">
+            <p className="section__eyebrow section__eyebrow--left">
+              <TreePine size={15} aria-hidden="true" />
+              El taller
+            </p>
+            <h2 className="section__title">
+              Cada pieza lleva el pulso de quien la trabaja
+            </h2>
+            <p className="story__text">
+              Seleccionamos el tablón, respetamos su veta y dejamos que el tiempo haga el resto.
+              No fabricamos en serie: cada mueble se corta, se ensambla y se encera a mano en
+              nuestro taller de Valles del Sur.
+            </p>
+
+            <ul className="story__points">
+              {craftPoints.map(({ icon: Icon, title, text }) => (
+                <li key={title}>
+                  <span className="story__point-icon">
+                    <Icon size={17} aria-hidden="true" />
+                  </span>
+                  <div>
+                    <strong>{title}</strong>
+                    <p>{text}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <Link to="/categorias" className="btn btn--outline">
+              Conocer nuestras maderas
+              <ChevronRight size={17} aria-hidden="true" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ----------------------------- PIEZAS DESTACADAS -------------------------- */}
+      <section className="section section--tinted">
         <SectionTitle
           eyebrow="Piezas destacadas"
           title="Las favoritas del taller"
@@ -127,7 +171,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section section--tinted">
+      {/* -------------------------------- CATEGORÍAS ------------------------------ */}
+      <section className="section">
         <SectionTitle
           eyebrow="Categorías"
           title="¿Qué pieza buscas?"
@@ -153,17 +198,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      {/* -------------------------------- TESTIMONIO ----------------------------- */}
+      <section className="section section--tinted">
         <figure className="quote animate__animated animate__fadeIn">
           <Quote size={40} aria-hidden="true" />
           <blockquote>
             “Pedimos la mesa del comedor con medidas especiales. Nos la entregaron con la veta
-            hermosa y una tarjeta escrita a mano del carpentero que la hizo. Se nota el oficio.”
+            hermosa y una tarjeta escrita a mano del carpintero que la hizo. Se nota el oficio.”
           </blockquote>
           <figcaption>— Familia Cárdenas, clientes desde 2019</figcaption>
         </figure>
       </section>
 
+      {/* ---------------------------------- CTA ---------------------------------- */}
       <section className="cta-banner">
         <div className="cta-banner__inner">
           <div>
@@ -172,19 +219,21 @@ export default function Home() {
               Trabajamos encargos especiales: medidas, madera y terminación según tu espacio.
             </p>
           </div>
-          <a href="tel:+56942125573" className="btn btn--primary">
-            <Phone size={17} aria-hidden="true" />
-            Hablar con el taller
-          </a>
-          <a
-            href={whatsappLink('Quiero hacer una consulta desde la página web.')}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn--whatsapp"
-          >
-            <WhatsAppIcon size={17} aria-hidden="true" />
-            Escribir por WhatsApp
-          </a>
+          <div className="cta-banner__actions">
+            <a href="tel:+56942125573" className="btn btn--primary">
+              <Phone size={17} aria-hidden="true" />
+              Hablar con el taller
+            </a>
+            <a
+              href={whatsappLink('Quiero hacer una consulta desde la página web.')}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn--whatsapp"
+            >
+              <WhatsAppIcon size={17} aria-hidden="true" />
+              Escribir por WhatsApp
+            </a>
+          </div>
         </div>
       </section>
     </div>
